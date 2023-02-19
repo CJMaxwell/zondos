@@ -1,91 +1,48 @@
-import { Request, Response } from 'express';
-import { v4 as uuidv4 } from 'uuid';
-
-import hashPassword from '../helpers/hashPassword';
-import generateToken from '../helpers/generateToken';
-import { IMerchant } from '../model/merchant.model';
+import { Request, Response, NextFunction } from 'express';
+import HttpException from '../exception/HttpException';
 import comparePassword from '../helpers/comparePassword';
-const { Merchant } = require('../../models');
+
+import generateToken from '../helpers/generateToken';
+import { IMerchantDTO } from '../model/merchant.model';
+import AuthService from '../services/AuthService';
 
 class AuthController {
-    static async signup(req: Request, res: Response) {
+    static async signup(req: Request, res: Response, next: NextFunction) {
         try {
-          const { businessName, email, phoneNumber, address, logoUrl, password, workingHours } = req.body;
-          if (!(password && email)) {
-            res.status(400).json({
-              message: 'Email and password are required'
-            });
-            return;
+          const merchant: IMerchantDTO = req.body;
+
+          if (!(merchant.password && merchant.email)) {
+            throw new HttpException(400,'Email and password are required' );
           };
-          const hashedPassword = await hashPassword(password);
-    
-          const [newMerchant, created] = await Merchant.findOrCreate({
-            where: {
-              email
-            },
-            defaults: {
-              id: uuidv4(),
-              businessName,
-              phoneNumber,
-              address,
-              email,
-              logoUrl,
-              workingHours,
-              password: hashedPassword,
-            },
-          });
-    
-          if (!created) {
-            res.status(409).json({
-              message: "Merchant with this email already exists."
-            });
-            return;
-          };
-    
-          const token = generateToken(newMerchant as IMerchant);
-    
-          const plainMerchant = newMerchant.get({ plain: true });
-          delete plainMerchant.password;
-    
+
+          const createdMerchant = await AuthService.signup(merchant);
+          const token = generateToken(createdMerchant);
           res.status(201).json(
             {
-              merchant: plainMerchant,
+              merchant: createdMerchant,
               token
             }
           );
     
         } catch (error) {
-          res.status(500).json({
-            // @ts-ignore
-            message: error.message
-          });
+          next(error)
         };
       };
 
-      static async login(req: Request, res: Response) {
+      static async login(req: Request, res: Response, next: NextFunction) {
 
         try {
           const { email, password } = req.body;
     
           if (!(email && password)) {
-            res.status(400).json({
-              message: 'Please enter your username and/or password.'
-            });
-            return;
+            throw new HttpException(400, 'Please enter your username and/or password.')
           };
     
     
-          const existingMerchant = await Merchant.findOne({
-            where: {
-              email
-            }
-          });
+          const existingMerchant = await AuthService.login(email);
     
           if (!existingMerchant) {
-            res.status(404).json({
-              message: 'Merchant does not exist.'
-            });
-            return;
+            throw new HttpException(404, 'Merchant does not exist.')
           };
     
           const loggedInMerchant = {
@@ -107,16 +64,11 @@ class AuthController {
             });
     
           } else {
-            res.status(401).json({
-              message: 'Either password or email is incorrect.'
-            });
+            throw new HttpException(401, 'Either password or email is incorrect.')
           };
     
         } catch (error) {
-          res.status(500).json({
-            // @ts-ignore
-            message: error.errors
-          });
+          next(error);
         }
       };
 }
