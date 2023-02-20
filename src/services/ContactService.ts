@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import HttpException from '../exception/HttpException';
 
 import { Icontact, IContactDTO } from "../model/contact.model";
-const { Contact } = require('../../models');
+const { Contact, group } = require('../../models');
 
 
 class ContactService {
@@ -79,6 +79,28 @@ class ContactService {
 
         return updatedContact;
 
+    }
+
+    static async addContactToGroup(contactId: string, groupId: string) {
+        const [newlyAdded, created] = await group.findOrCreate({
+            where: {
+                contactId,
+                groupId,
+            },
+            defaults: {
+              id: uuidv4(),
+              contactId,
+              groupId,
+            },
+          });
+    
+          if (!created) {
+            throw new HttpException(409, "Contact already exists in the group.")
+          };
+
+        const plainContact = newlyAdded.get({ plain: true });
+        
+        return plainContact;
     }
 
 }

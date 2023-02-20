@@ -9,5 +9,6 @@ contactRoutes.post('/merchants/:merchantId/contacts', verifyToken, ContactContro
 contactRoutes.get('/merchants/:merchantId/contacts', verifyToken,ContactController.getAllContactsByMerchantId);
 contactRoutes.get('/merchants/:merchantId/contacts/:id', verifyToken,ContactController.getContactById);
 contactRoutes.put('/merchants/:merchantId/contacts/:id', verifyToken,ContactController.updateContactById);
+contactRoutes.post('/merchants/:merchantId/group-contacts', verifyToken,ContactController.addContactToGroup);
 
 export default contactRoutes;

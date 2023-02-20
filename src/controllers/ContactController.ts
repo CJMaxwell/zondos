@@ -66,6 +66,20 @@ class ContactController {
             contact: updatedContact
         });
     }
+
+    static async addContactToGroup(req: Request, res:Response, next: NextFunction) {
+        try {
+
+            const { contactId, groupId } = req.body;
+            await ContactService.addContactToGroup(contactId, groupId);
+
+            res.status(200).json({
+                message: 'successful'
+            })
+        } catch (error) {
+            next(error)
+        }
+    }
         
 }
 
