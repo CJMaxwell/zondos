@@ -7,6 +7,8 @@ import authRoutes from './routes/authRoutes';
 import errorMiddleware from './middleware/errorMiddleware';
 import { logger } from './utils/logger';
 import merchantRoutes from './routes/merchantRoutes';
+import contactRoutes from './routes/contactRoutes';
+import contactGroupRoutes from './routes/contactGroupRoutes';
 
 config();
 const app: Express = express();
@@ -17,6 +19,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/v1', authRoutes);
 app.use('/api/v1', merchantRoutes);
+app.use('/api/v1', contactRoutes);
+app.use('/api/v1', contactGroupRoutes);
 app.get('/', (req: Request, res: Response) => {
     res.status(200).json({
         message: 'Hello Zondos'

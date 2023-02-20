@@ -9,7 +9,7 @@ class ContactService {
 
     static async createContact(payload: IContactDTO, merchantId: string) {
 
-        const { firstName, lastName, phoneNumber, dob, email, gender } =payload;
+        const { firstName, lastName, phoneNumber, dob, email, gender } = payload;
 
         const [newContact, created] = await Contact.findOrCreate({
             where: {
