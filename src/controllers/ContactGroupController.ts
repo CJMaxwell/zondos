@@ -6,9 +6,11 @@ import ContactGroupService from "../services/ContactGroupService";
 class ContactGroupController {
     static async createContactGroup(req: Request, res:Response, next: NextFunction) {
         try {
-            // @ts-ignore
-            const { id: merchantId } = req.merchant;
+            const { merchantId } = req.params;
             const { title } = req.body;
+
+            console.log(merchantId, 'controller');
+            
 
             const contact = await ContactGroupService.createContactGroup(title, merchantId);
 
@@ -23,8 +25,7 @@ class ContactGroupController {
 
     static async getAllContactGroupsByMerchantId(req: Request, res:Response, next: NextFunction) {
         try {
-            // @ts-ignore
-            const { id: merchantId } = req.merchant;
+            const { merchantId } = req.params;
             const contactGroups = await ContactGroupService.getAllContactGroupsByMerchantId(merchantId);
 
             if (!contactGroups) {
@@ -42,8 +43,7 @@ class ContactGroupController {
 
     static async getContactGroupById(req: Request, res:Response, next: NextFunction) {
         try {
-            // @ts-ignore
-            const { id: merchantId } = req.merchant;
+            const { merchantId } = req.params;
             const { id } = req.params;
             const contactGroup = await ContactGroupService.getContactGroupById(id, merchantId);
 

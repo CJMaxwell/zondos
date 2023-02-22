@@ -70,8 +70,8 @@ class ContactController {
     static async addContactToGroup(req: Request, res:Response, next: NextFunction) {
         try {
 
-            const { contactId, groupId } = req.body;
-            await ContactService.addContactToGroup(contactId, groupId);
+            const { contactId, contactGroupId } = req.body;
+            await ContactService.addContactToGroup(contactId, contactGroupId);
 
             res.status(200).json({
                 message: 'successful'

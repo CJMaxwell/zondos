@@ -6,6 +6,6 @@ import verifyToken from '../../middleware/verifyToken';
 const merchantRoutes = Router();
 
 merchantRoutes.get('/merchants/:id', verifyToken, MerchantController.getMerchantById);
-merchantRoutes.get('/merchants/:id', verifyToken, MerchantController.updateMerchantById);
+merchantRoutes.put('/merchants/:id', verifyToken, MerchantController.updateMerchantById);
 
 export default merchantRoutes;

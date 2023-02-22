@@ -7,6 +7,8 @@ class ContactGroupService {
 
     static async createContactGroup(title: string, merchantId: string) {
 
+        console.log(merchantId, 'Merchants ID == service')
+
         const [newContactGroup, created] = await ContactGroup.findOrCreate({
             where: {
                 title,
@@ -15,7 +17,7 @@ class ContactGroupService {
             defaults: {
               id: uuidv4(),
               title,
-              merchantId
+              merchantId: merchantId
             },
           });
     
@@ -25,7 +27,7 @@ class ContactGroupService {
 
         const plainContactGroup = newContactGroup.get({ plain: true });
         
-        plainContactGroup
+        return plainContactGroup
     }
 
     static async getAllContactGroupsByMerchantId(merchantId: string) {

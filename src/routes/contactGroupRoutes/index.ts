@@ -6,9 +6,9 @@ import verifyToken from '../../middleware/verifyToken';
 
 const contactGroupRoutes = Router();
 
-contactGroupRoutes.post('/merchants/:merchantId/contacts', verifyToken, ContactGroupController.createContactGroup);
-contactGroupRoutes.get('/merchants/:merchantId/contacts', verifyToken,ContactGroupController.getAllContactGroupsByMerchantId);
-contactGroupRoutes.get('/merchants/:merchantId/contacts/:id', verifyToken,ContactGroupController.getContactGroupById);
-contactGroupRoutes.put('/merchants/:merchantId/contacts/:id', verifyToken,ContactGroupController.updateContactGroupById);
+contactGroupRoutes.post('/merchants/:merchantId/groups', verifyToken, ContactGroupController.createContactGroup);
+contactGroupRoutes.get('/merchants/:merchantId/groups', verifyToken,ContactGroupController.getAllContactGroupsByMerchantId);
+contactGroupRoutes.get('/merchants/:merchantId/groups/:id', verifyToken,ContactGroupController.getContactGroupById);
+contactGroupRoutes.put('/merchants/:merchantId/groups/:id', verifyToken,ContactGroupController.updateContactGroupById);
 
 export default contactGroupRoutes;

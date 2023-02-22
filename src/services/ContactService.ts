@@ -81,16 +81,16 @@ class ContactService {
 
     }
 
-    static async addContactToGroup(contactId: string, groupId: string) {
+    static async addContactToGroup(contactId: string, contactGroupId: string) {
         const [newlyAdded, created] = await group.findOrCreate({
             where: {
                 contactId,
-                groupId,
+                contactGroupId,
             },
             defaults: {
               id: uuidv4(),
               contactId,
-              groupId,
+              contactGroupId,
             },
           });
     
