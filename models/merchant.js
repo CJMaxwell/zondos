@@ -17,6 +17,9 @@ module.exports = (sequelize, DataTypes) => {
       Merchant.hasMany(models.ContactGroup, {
         foreignKey: 'merchantId'
       });
+      Merchant.hasMany(models.SMSTransaction, {
+        foreignKey: 'merchantId'
+      });
     };
   }
   Merchant.init({
