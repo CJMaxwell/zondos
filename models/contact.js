@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
       Contact.hasMany(models.SMSTransaction, {
         foreignKey: 'contactId'
       });
+
+      Contact.hasMany(models.EmailTransaction, {
+        foreignKey: 'contactId'
+      });
     }
   }
   Contact.init({

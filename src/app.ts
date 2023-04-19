@@ -1,8 +1,10 @@
 import express, { Express, Request, Response } from 'express';
+import swaggerUi from 'swagger-ui-express';
+import swaggerSpec from './utils/swagger';
 import cors from 'cors';
 import { config } from 'dotenv';
 
-import swaggerDocs from './utils/swagger';
+// import swaggerDocs from './utils/swagger';
 import authRoutes from './routes/authRoutes';
 import errorMiddleware from './middleware/errorMiddleware';
 import { logger } from './utils/logger';
@@ -25,6 +27,7 @@ app.use('/api/v1', contactRoutes);
 app.use('/api/v1', contactGroupRoutes);
 app.use('/api/v1', smsRoutes);
 app.use('/api/v1', emailRoutes);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.get('/', (req: Request, res: Response) => {
     res.status(200).json({
         message: 'Hello Zondos'
@@ -36,5 +39,7 @@ app.use(errorMiddleware);
 
 app.listen(process.env.PORT || 5000, () => {
     logger.info(`🚀 Server started on http://localhost:${process.env.PORT}`);
-    swaggerDocs(app, process.env.PORT || 5000)
+    // swaggerDocs(app, process.env.PORT || 5000)
+    // Serve Swagger documentation
+// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 });

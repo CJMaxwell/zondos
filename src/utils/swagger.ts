@@ -1,17 +1,24 @@
-import { Express, Request, Response } from "express";
-import swaggerJsdoc from "swagger-jsdoc";
-import swaggerUi from "swagger-ui-express";
-// import { version } from "../../package.json";
+import swaggerJSDoc from 'swagger-jsdoc';
+import { config } from 'dotenv';
 
-const options: swaggerJsdoc.Options = {
+config();
+
+
+const options = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "Zondos REST API Docs",
-      version: "0.1.0",
+      title: "Zondos API",
+      version: "1.0.0",
     },
+    servers: [
+      {
+        url: process.env.APIURL,
+        description: "Development server",
+      },
+    ],
     components: {
-      securitySchemas: {
+      securitySchemes: {
         bearerAuth: {
           type: "http",
           scheme: "bearer",
@@ -19,28 +26,11 @@ const options: swaggerJsdoc.Options = {
         },
       },
     },
-    security: [
-      {
-        bearerAuth: [],
-      },
-    ],
   },
-  apis: ["../routes/*/index.ts", "../controllers/*.ts"],
+  apis: ["./src/routes/**/*.ts"],
 };
 
-const swaggerSpec = swaggerJsdoc(options);
+const swaggerSpec = swaggerJSDoc(options);
 
-const  swaggerDocs = (app: Express, port: string | number) => {
-  // Swagger page
-  app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec, { explorer: true }));
+export default swaggerSpec;
 
-  // Docs in JSON format
-  app.get("/docs.json", (req: Request, res: Response) => {
-    res.setHeader("Content-Type", "application/json");
-    res.send(swaggerSpec);
-  });
-
-  //log.info(`Docs available at http://localhost:${port}/docs`);
-}
-
-export default swaggerDocs;

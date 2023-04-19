@@ -20,6 +20,9 @@ module.exports = (sequelize, DataTypes) => {
       Merchant.hasMany(models.SMSTransaction, {
         foreignKey: 'merchantId'
       });
+      Merchant.hasMany(models.EmailTransaction, {
+        foreignKey: 'merchantId'
+      });
     };
   }
   Merchant.init({
