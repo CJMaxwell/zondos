@@ -92,7 +92,7 @@ contactGroupRoutes.post('/merchants/:merchantId/groups', verifyToken, ContactGro
 contactGroupRoutes.get('/merchants/:merchantId/groups', verifyToken,ContactGroupController.getAllContactGroupsByMerchantId);
 /**
  * @swagger
- * /merchants/:merchantId/groups/id:
+ * /merchants/:merchantId/groups/:id:
  *   get:
  *     summary: Gets a contact group
  *     description: Get a contact group for a specified merchant
@@ -136,7 +136,7 @@ contactGroupRoutes.get('/merchants/:merchantId/groups', verifyToken,ContactGroup
 contactGroupRoutes.get('/merchants/:merchantId/groups/:id', verifyToken,ContactGroupController.getContactGroupById);
 /**
  * @swagger
- * /merchants/:merchantId/groups/id:
+ * /merchants/:merchantId/groups/:id:
  *   put:
  *     summary: Updates a contact group
  *     description: Updates a contact group for a specified merchant and Id
@@ -153,11 +153,16 @@ contactGroupRoutes.get('/merchants/:merchantId/groups/:id', verifyToken,ContactG
  *         required: true
  *         schema:
  *           type: string
- *       - name: id
- *         in: body
- *         required: true
- *         schema:
- *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *                 example: Zonal District
  *     responses:
  *       200:
  *         description: Ok
