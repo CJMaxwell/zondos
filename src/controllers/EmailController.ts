@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import { Infobip, AuthType } from "@infobip-api/sdk";
 import { config } from 'dotenv';
+import OTPService from "../services/OTPService";
+import EmailService from "../services/EmailService";
 
 config();
 
@@ -12,24 +13,7 @@ class EmailController {
         
         try {
             const { from, to, subject, html } = req.body;
-            let infobip = new Infobip({
-                baseUrl: `${process.env.INFOBIP_BASE_URL}`,
-                apiKey: `${process.env.INFOBIP_KEY}`,
-                authType: AuthType.ApiKey,
-            });
-
-            let response = await infobip.channels.email.send({
-                from,
-                to,
-                subject,
-                html
-            });
-
-            if (response instanceof Error) {
-                throw response;
-            };
-
-            const { data } = response;
+            const data = await EmailService.sendEmail(from, to, subject, html);
             res.status(200).json(data);
             
         } catch (error) {
@@ -37,6 +21,10 @@ class EmailController {
         }
         
     }
+
+    
+
+    
 
 }
 

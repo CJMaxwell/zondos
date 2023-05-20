@@ -109,7 +109,6 @@ const authRoutes = Router();
  *             properties:
  *               message:
  *                type: string
- * 
 */
 authRoutes.post('/auth/signup', AuthController.signup);
 /**
@@ -199,5 +198,8 @@ authRoutes.post('/auth/signup', AuthController.signup);
  * 
 */
 authRoutes.post('/auth/login', AuthController.login);
+
+authRoutes.post('/auth/sendOTP', AuthController.sendOTP);
+authRoutes.post('/auth/verifyOTP', AuthController.verifyOTP);
 
 export default authRoutes;

@@ -5,6 +5,9 @@ import comparePassword from '../helpers/comparePassword';
 import generateToken from '../helpers/generateToken';
 import { IMerchantDTO } from '../model/merchant.model';
 import AuthService from '../services/AuthService';
+import OTPService from '../services/OTPService';
+import EmailService from '../services/EmailService';
+import { hasOTPExpired } from '../helpers/OTP';
 
 class AuthController {
   static async signup(req: Request, res: Response, next: NextFunction) {
@@ -72,9 +75,45 @@ class AuthController {
     }
   };
 
-  static async verifyEmail(email: string) {
-    
+  static async sendOTP(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { email } = req.body;
+      const response = await OTPService.create(email);
+
+      //res.status(201).json(response);
+      const from = "zondos@selfserviceib.com";
+      const to = "zondos.tech@gmail.com";
+      const subject = "OTP";
+      const html = `<p>Use this OTP ${response.code} to continue your signup.</p>`;
+
+      const result = await EmailService.sendEmail(from, to, subject, html);
+
+      res.status(200).json(result);
+
+    } catch (error) {
+        next(error);
+    }
+}
+
+static async verifyOTP(req: Request, res: Response, next: NextFunction) {
+  try {
+      const { email, otp } = req.body;
+      const data = await OTPService.verifyOTP(email);
+      if (data.code == otp) {
+        const isValid = hasOTPExpired(data.updatedAt);
+        if(isValid) {
+          throw new HttpException(400, 'This OTP has expired.');
+        };
+        res.status(200).json({ 
+          message: 'success' 
+        });
+      } else {
+        throw new HttpException(400, 'Wrong OTP.');
+      };
+  } catch (error) {
+      next(error)
   }
+}
 
   
 }

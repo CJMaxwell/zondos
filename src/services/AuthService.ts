@@ -3,6 +3,7 @@ import HttpException from '../exception/HttpException';
 
 import hashPassword from '../helpers/hashPassword';
 import { IMerchant, IMerchantDTO } from "../model/merchant.model";
+import { NextFunction } from 'express';
 const { Merchant } = require('../../models');
 
 
@@ -49,6 +50,8 @@ class AuthService {
 
         return existingMerchant;
     }
+
+    
 }
 
 export default AuthService;
