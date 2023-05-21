@@ -11,13 +11,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Contact.hasMany(models.SMSTransaction, {
-        foreignKey: 'contactId'
-      });
-
-      Contact.hasMany(models.EmailTransaction, {
-        foreignKey: 'contactId'
-      });
     }
   }
   Contact.init({

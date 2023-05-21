@@ -198,8 +198,102 @@ authRoutes.post('/auth/signup', AuthController.signup);
  * 
 */
 authRoutes.post('/auth/login', AuthController.login);
-
+/**
+ * @swagger
+ * /auth/sendOTP:
+ *   post:
+ *     summary: Sends OTP via email to a Merchant.
+ *     tags:
+ *       - OTP
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 example: zondos.tech@gmail.com
+ *                 required: true
+ *     responses:
+ *       200:
+ *         description: Ok
+ *         content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *               bulkId:
+ *                type: string
+ *               messages:
+ *                  type: array
+ *                  items:
+ *                      type: object
+ *                      properties:
+ *                       to:
+ *                          type: string
+ *                       messageId:
+ *                          type: string
+ *                       status:
+ *                          type: object
+ *                          properties:
+ *                           groupId:
+ *                             type: integer
+ *                           groupName:
+ *                             type: string
+ *                           id:
+ *                             type: integer
+ *                           name:
+ *                             type: string
+ *                           description:
+ *                             type: string
+ */
 authRoutes.post('/auth/sendOTP', AuthController.sendOTP);
+
+/**
+ * @swagger
+ * /auth/verifyOTP:
+ *   post:
+ *     summary: Verifies OTP sent to Merchant.
+ *     tags:
+ *       - OTP
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 example: zondos.tech@gmail.com
+ *                 required: true
+ *               otp:
+ *                 type: integer
+ *                 example: 345028
+ *                 required: true
+ *     responses:
+ *       200:
+ *         description: Ok
+ *         content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *               message:
+ *                type: string
+ *       400:
+ *         description: Bad request
+ *         content:
+ *          application/json:
+ *            schema:
+ *             type: object
+ *             properties:
+ *               message:
+ *                type: string
+ */
+
 authRoutes.post('/auth/verifyOTP', AuthController.verifyOTP);
 
 export default authRoutes;

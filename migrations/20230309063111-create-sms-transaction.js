@@ -35,14 +35,6 @@ module.exports = {
           as: 'merchantId',
         }
       },
-      contactId: {
-        type: Sequelize.STRING,
-        references: {
-          model: 'Contacts',
-          key: 'id',
-          as: 'contactId',
-        }
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

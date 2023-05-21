@@ -26,7 +26,7 @@ const smsRoutes = Router();
  *             properties:
  *               phoneNumber:
  *                 type: string
- *                 example: 2348187604547
+ *                 example: 2348187604547,08055280012
  *               message:
  *                 type: string
  *                 example: Hello from Zondos.
@@ -51,24 +51,14 @@ const smsRoutes = Router();
  *                  type: string
  *                 message:
  *                  type: string
- *                 messageId:
+ *                 message_id:
  *                  type: string
  *                 cost:
  *                  type: string
  *                 currency:
  *                  type: string
- *                 gatewayUsed: 
+ *                 gateway_used: 
  *                  type: string
- *                 merchantId: 
- *                  type: string 
- *                 contactId: 
- *                  type: string 
- *                 updatedAt:
- *                  type: string
- *                 createdAt:
- *                  type: string
- *               token:
- *                type: string
  *       400:
  *         description: Bad request
  *         content:

@@ -14,8 +14,8 @@
     "copy": "cp -r models dist/models && cp -r config dist/config",
     "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run build && npm run copy",
     "db:create": "npx sequelize-cli db:create",
-    "db:migrate": "npx sequelize-cli db:migrate",
-    "undo:db:migrate": "npx sequelize-cli db:migrate:undo:all",
+    "db-migration": "npx sequelize-cli db:migrate",
+    "undo-migration": "npx sequelize-cli db:migrate:undo:all",
     "db:seed": "npx sequelize db:seed:all",
     "undo:db:seed": "npx sequelize-cli db:seed:undo:all",
     "test": "echo \"Error: no test specified\" && exit 1"

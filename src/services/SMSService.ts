@@ -4,7 +4,7 @@ import { responseData } from "../model/smsAPIResponse.model";
 const { SMSTransaction } = require('../../models');
 class SMSService {
 
-    static async saveSentSMS(msg: responseData, merchantId: string, contactId: string) {
+    static async saveSentSMS(msg: responseData, merchantId: string) {
     
         const {status, message, message_id, cost, currency, gateway_used} = msg;
 
@@ -19,8 +19,7 @@ class SMSService {
               cost, 
               currency, 
               gatewayUsed: gateway_used,
-              merchantId,
-              contactId
+              merchantId
             },
           });
 
