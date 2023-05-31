@@ -11,10 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      ContactGroup.hasMany(models.group, {
+        foreignKey: 'contactGroupId'
+      });
     }
   }
   ContactGroup.init({
-    title: DataTypes.STRING
+    title: DataTypes.STRING,
+    contacts: DataTypes.ARRAY(DataTypes.INTEGER),
   }, {
     sequelize,
     modelName: 'ContactGroup',

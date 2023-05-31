@@ -68,6 +68,11 @@ class ContactGroupController {
             contact: updatedContactGroup
         });
     }
+
+    static async getAllCOntactsByGroupId(req: Request, res:Response) {
+        const { id:groupID } = req.params;
+
+    }
 }
 
 export default ContactGroupController;

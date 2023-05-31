@@ -82,7 +82,8 @@ class ContactService {
     }
 
     static async addContactToGroup(contactId: string, contactGroupId: string) {
-        const [newlyAdded, created] = await group.findOrCreate({
+      console.log("Add contact to group",contactId, contactGroupId)
+        const [newlyAddedContact, created] = await group.findOrCreate({
             where: {
                 contactId,
                 contactGroupId,
@@ -98,9 +99,9 @@ class ContactService {
             throw new HttpException(409, "Contact already exists in the group.")
           };
 
-        const plainContact = newlyAdded.get({ plain: true });
+        const addedContactToGroup = newlyAddedContact.get({ plain: true });
         
-        return plainContact;
+        return addedContactToGroup;
     }
 
 }

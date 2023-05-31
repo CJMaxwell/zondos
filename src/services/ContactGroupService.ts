@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 
 import HttpException from '../exception/HttpException';
-const { ContactGroup } = require('../../models');
+const { ContactGroup, Contact } = require('../../models');
 
 class ContactGroupService {
 
@@ -66,6 +66,13 @@ class ContactGroupService {
         return updatedContactGroup;
 
     }
+    
+    static async getAllCOntactsByGroupId(id: string) {
+        const group = await ContactGroup.findByPk(id, { include: Contact });
+        return group;
+    }
+
+
 
 }
 

@@ -336,6 +336,6 @@ contactRoutes.put('/merchants/:merchantId/contacts/:id', verifyToken,ContactCont
  *                type: string
  * 
 */
-contactRoutes.post('/merchants/:merchantId/group-contacts', verifyToken,ContactController.addContactToGroup);
+contactRoutes.post('/merchants/:merchantId/group-contacts', verifyToken, ContactController.addContactToGroup);
 
 export default contactRoutes;
