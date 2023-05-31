@@ -12,6 +12,9 @@ module.exports = {
       title: {
         type: Sequelize.STRING
       },
+      contacts: {
+        type: Sequelize.ARRAY(Sequelize.STRING)
+      },
       merchantId: {
         type: Sequelize.STRING,
         references: {

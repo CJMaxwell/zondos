@@ -7,16 +7,16 @@ class ContactGroupController {
     static async createContactGroup(req: Request, res:Response, next: NextFunction) {
         try {
             const { merchantId } = req.params;
-            const { title } = req.body;
+            const { title, contacts } = req.body;
 
-            console.log(merchantId, 'controller');
+            console.log(contacts, 'contact');
             
 
-            const contact = await ContactGroupService.createContactGroup(title, merchantId);
+            const contact = await ContactGroupService.createContactGroup(title, merchantId, contacts);
 
             res.status(201).json({
                 message: 'successful',
-                contact
+                contactGroup: contact
             })
         } catch (error) {
             next(error)

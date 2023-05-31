@@ -5,7 +5,7 @@ const { ContactGroup, Contact } = require('../../models');
 
 class ContactGroupService {
 
-    static async createContactGroup(title: string, merchantId: string) {
+    static async createContactGroup(title: string, merchantId: string, contacts: string[]) {
 
         const [newContactGroup, created] = await ContactGroup.findOrCreate({
             where: {
@@ -15,6 +15,7 @@ class ContactGroupService {
             defaults: {
               id: uuidv4(),
               title,
+              contacts,
               merchantId: merchantId
             },
           });

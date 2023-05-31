@@ -7,17 +7,17 @@ const creds = {
     use_env_variable: "DATABASE_URL",
     dialect: 'postgres',
     operatorsAliases: false,
-    // dialectOptions: {
-    //   ssl: {
-    //     rejectUnauthorized: false
-    //   }
-    // },
-    // dialectOptions: {
-    //   ssl: {
-    //     require: false,
-    //     rejectUnauthorized: false
-    //   }
-    // },
+    dialectOptions: {
+      ssl: {
+        rejectUnauthorized: false
+      }
+    },
+    dialectOptions: {
+      ssl: {
+        require: false,
+        rejectUnauthorized: false
+      }
+    },
   },
   test: {
     url: process.env.DATABASE_URL,
