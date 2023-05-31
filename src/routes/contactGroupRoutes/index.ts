@@ -87,21 +87,25 @@ contactGroupRoutes.post('/merchants/:merchantId/contact-groups', verifyToken, Co
  *              properties:
  *               message:
  *                type: string
- *               contactGroup:
- *                  type: array
- *                  items:
- *                      type: object
- *                      properties:
- *                       id:
- *                          type: string
- *                       title:
- *                          type: string
- *                       merchantId:
- *                          type: string
- *                       updatedAt:
- *                          type: string
- *                       createdAt:
- *                          type: string
+ *               contactGroups:
+ *                type: array
+ *                items:
+ *                 type: object
+ *                 properties:
+ *                  id:
+ *                   type: string
+ *                  title:
+ *                   type: string
+ *                  merchantId:
+ *                   type: string
+ *                  contacts:
+ *                   type: array
+ *                   items:
+ *                      type: string
+ *                  updatedAt:
+ *                   type: string
+ *                  createdAt:
+ *                   type: string
  */
 contactGroupRoutes.get('/merchants/:merchantId/contact-groups', verifyToken,ContactGroupController.getAllContactGroupsByMerchantId);
 /**
@@ -142,6 +146,10 @@ contactGroupRoutes.get('/merchants/:merchantId/contact-groups', verifyToken,Cont
  *                  type: string
  *                 merchantId:
  *                  type: string
+ *                 contacts:
+ *                  type: array
+ *                  items:
+ *                      type: string
  *                 updatedAt:
  *                  type: string
  *                 createdAt:
@@ -177,6 +185,11 @@ contactGroupRoutes.get('/merchants/:merchantId/contact-groups/:id', verifyToken,
  *               title:
  *                 type: string
  *                 example: Zonal District
+ *               contacts:
+ *                 type: array
+ *                 items:
+ *                  type: string
+ * 
  *     responses:
  *       200:
  *         description: Ok
@@ -196,6 +209,10 @@ contactGroupRoutes.get('/merchants/:merchantId/contact-groups/:id', verifyToken,
  *                  type: string
  *                 merchantId:
  *                  type: string
+ *                 contacts:
+ *                  type: array
+ *                  items:
+ *                      type: string
  *                 updatedAt:
  *                  type: string
  *                 createdAt:

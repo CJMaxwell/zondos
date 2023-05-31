@@ -66,7 +66,7 @@ class ContactGroupController {
         const updatedContactGroup = await ContactGroupService.updateContactGroupById(title, contacts, id);
         res.status(200).json({
             message: 'successful',
-            contact: updatedContactGroup
+            contactGroup: updatedContactGroup
         });
     }
 
