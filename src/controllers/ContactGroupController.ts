@@ -62,17 +62,14 @@ class ContactGroupController {
 
     static async updateContactGroupById(req: Request, res:Response) {
         const { id } = req.params;
-        const updatedContactGroup = await ContactGroupService.updateContactGroupById(req.body, id);
+        const {title, contacts} = req.body;
+        const updatedContactGroup = await ContactGroupService.updateContactGroupById(title, contacts, id);
         res.status(200).json({
             message: 'successful',
             contact: updatedContactGroup
         });
     }
 
-    static async getAllCOntactsByGroupId(req: Request, res:Response) {
-        const { id:groupID } = req.params;
-
-    }
 }
 
 export default ContactGroupController;

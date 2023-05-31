@@ -50,9 +50,9 @@ class ContactGroupService {
         return contactGroup;
     }
 
-    static async updateContactGroupById(title: string, id: string) {
+    static async updateContactGroupById(title: string, contacts: string[],  id: string) {
 
-        const [updated, updatedContactGroup] = await ContactGroup.update({title}, {
+        const [updated, updatedContactGroup] = await ContactGroup.update({title, contacts}, {
             where: {
               id
             },
