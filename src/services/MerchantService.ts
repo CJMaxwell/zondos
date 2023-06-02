@@ -22,7 +22,7 @@ class MerchantService {
         });
       
         if(!updated) {
-        throw new HttpException(400, 'Merchant was not updated');
+        throw new HttpException(400, 'Merchant was not updated.');
         }
     
         return updatedMerchant
