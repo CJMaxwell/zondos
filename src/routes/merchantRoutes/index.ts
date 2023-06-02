@@ -74,10 +74,10 @@ const merchantRoutes = Router();
  *               message:
  *                type: string
  */
-merchantRoutes.get('/merchants/:id', verifyToken, MerchantController.getMerchantById);
+merchantRoutes.get('/merchants/:id', MerchantController.getMerchantById);
 /**
  * @swagger
- * /merchants/:id:
+ * /merchants/{id}:
  *   put:
  *     summary: Gets a specific merchant
  *     description: Gets a specified merchant
