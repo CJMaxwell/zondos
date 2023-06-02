@@ -6,7 +6,7 @@ import verifyToken from '../../middleware/verifyToken';
 const smsRoutes = Router();
 /**
  * @swagger
- * /merchants/:id/sms:
+ * /merchants/{id}/sms:
  *   post:
  *     summary: Sends SMS to Merchant's Contacts.
  *     tags:

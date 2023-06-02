@@ -6,7 +6,7 @@ import verifyToken from '../../middleware/verifyToken';
 const merchantRoutes = Router();
 /**
  * @swagger
- * /merchants/:id:
+ * /merchants/{id}:
  *   get:
  *     summary: Gets a specific merchant
  *     description: Gets a specified merchant

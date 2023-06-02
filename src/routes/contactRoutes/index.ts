@@ -6,7 +6,7 @@ import verifyToken from '../../middleware/verifyToken';
 const contactRoutes = Router();
 /**
  * @swagger
- * /merchants/:merchantId/contacts:
+ * /merchants/{merchantId}/contacts:
  *   post:
  *     summary: Create a Merchant's Contact.
  *     tags:
@@ -86,7 +86,7 @@ const contactRoutes = Router();
 contactRoutes.post('/merchants/:merchantId/contacts', verifyToken, ContactController.createContact);
 /**
  * @swagger
- * /merchants/:merchantId/contacts:
+ * /merchants/{merchantId}/contacts:
  *   get:
  *     summary: Gets a list of contacts for a specified Merchant.
  *     tags:
@@ -144,7 +144,7 @@ contactRoutes.post('/merchants/:merchantId/contacts', verifyToken, ContactContro
 contactRoutes.get('/merchants/:merchantId/contacts', verifyToken,ContactController.getAllContactsByMerchantId);
 /**
  * @swagger
- * /merchants/:merchantId/contacts/:id:
+ * /merchants/{merchantId}/contacts/{id}:
  *   get:
  *     summary: Gets a Merchant's Contact.
  *     tags:
@@ -205,7 +205,7 @@ contactRoutes.get('/merchants/:merchantId/contacts', verifyToken,ContactControll
 contactRoutes.get('/merchants/:merchantId/contacts/:id', verifyToken,ContactController.getContactById);
 /**
  * @swagger
- * /merchants/:merchantId/contacts/:id:
+ * /merchants/{merchantId}/contacts/{id}:
  *   put:
  *     summary: Updates a Merchant's Contact.
  *     tags:
@@ -293,7 +293,7 @@ contactRoutes.get('/merchants/:merchantId/contacts/:id', verifyToken,ContactCont
 contactRoutes.put('/merchants/:merchantId/contacts/:id', verifyToken,ContactController.updateContactById);
 /**
  * @swagger
- * /merchants/:merchantId/group-contacts:
+ * /merchants/{merchantId}/group-contacts:
  *   post:
  *     summary: Adds a contact to a group for a specified Merchant.
  *     tags:

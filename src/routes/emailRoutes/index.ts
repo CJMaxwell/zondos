@@ -6,7 +6,7 @@ import EmailController from '../../controllers/EmailController';
 const emailRoutes = Router();
 /**
  * @swagger
- * /merchants/:id/email:
+ * /merchants/{id}/email:
  *   post:
  *     summary: Sends emails to Merchant's Contacts.
  *     tags:
