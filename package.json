@@ -13,6 +13,7 @@
     "build": "npx tsc -p .",
     "copy": "cp -r models dist/models && cp -r config dist/config",
     "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run build && npm run copy",
+    "build:digitalocean": "npm install --production=false && npm run build && npm run copy && npm ci",
     "db:create": "npx sequelize-cli db:create",
     "db-migration": "npx sequelize-cli db:migrate",
     "undo-migration": "npx sequelize-cli db:migrate:undo:all",
