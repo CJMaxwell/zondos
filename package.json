@@ -2,13 +2,13 @@
   "name": "zondos",
   "version": "1.0.0",
   "description": "",
-  "main": "app.ts",
+  "main": "index.ts",
   "engines": {
     "node": "14.18.0"
   },
   "scripts": {
-    "start": "node dist/app.js",
-    "dev": "nodemon --exec npx ts-node src/app.ts",
+    "start": "node dist/index.js",
+    "dev": "nodemon --exec npx ts-node src/index.ts",
     "digitalocean": "npx tsc -p .",
     "build": "npm install --production && npm run digitalocean && npm run copy",
     "copy": "cp -r models dist/models && cp -r config dist/config",
@@ -32,6 +32,7 @@
     "pg": "^8.8.0",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.28.0",
+    "sequelize-cli": "^6.5.2",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^4.6.0",
     "winston": "^3.8.2",
@@ -48,7 +49,6 @@
     "@types/uuid": "^9.0.0",
     "nodemon": "^2.0.20",
     "rimraf": "^4.1.2",
-    "sequelize-cli": "^6.5.2",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.4"
   }
