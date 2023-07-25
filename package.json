@@ -10,7 +10,7 @@
     "start": "node dist/index.js",
     "dev": "nodemon --exec npx ts-node src/index.ts",
     "digitalocean": "npx tsc -p .",
-    "build": "npm install --production && npm run digitalocean && npm run copy",
+    "build": "npm install --production && npm run digitalocean && npm run db-migration && npm run copy",
     "copy": "cp -r models dist/models && cp -r config dist/config",
     "db:create": "npx sequelize-cli db:create",
     "db-migration": "npx sequelize-cli db:migrate",
