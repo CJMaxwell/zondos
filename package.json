@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.ts",
+  "engines": {
+    "node": "14.18.0"
+  },
   "scripts": {
     "start": "node dist/app.js",
     "dev": "nodemon --exec npx ts-node src/app.ts",
     "digitalocean": "npx tsc -p .",
-    "build": "npm install --production=false && npm run digitalocean && npm run copy",
+    "build": "npm install --production && npm run digitalocean && npm run copy",
     "copy": "cp -r models dist/models && cp -r config dist/config",
     "db:create": "npx sequelize-cli db:create",
     "db-migration": "npx sequelize-cli db:migrate",
