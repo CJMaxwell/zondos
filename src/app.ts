@@ -37,9 +37,9 @@ app.get('/', (req: Request, res: Response) => {
 
 app.use(errorMiddleware);
 
-app.listen(process.env.PORT || 5000, () => {
+app.listen(process.env.PORT || 4000, () => {
     logger.info(`🚀 Server started on http://localhost:${process.env.PORT}`);
-    // swaggerDocs(app, process.env.PORT || 5000)
+    // swaggerDocs(app, process.env.PORT || 4000)
     // Serve Swagger documentation
-// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+    // app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 });
